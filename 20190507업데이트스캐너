@@ -1,0 +1,59 @@
+package ex0507;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class ex06_update {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("======회원수정 프로그램======");
+		System.out.print("수정할 id를 입력하세요:");
+		String updateID =sc.next();
+		
+		System.out.println("수정 할 데이터 를 입력하세요");
+		System.out.println("[1]pw[2]name[3]tel");
+		int updateDate = sc.nextInt();
+		System.out.println("변경할 데이터");
+		String input = sc.next();
+		String sql=null;
+		if (updateDate==1) {
+			sql="update member set pw=? where id=?";
+		}else if(updateDate==2) {
+			sql="update member set name=? where id=?";
+		}else if (updateDate==3) {
+			sql="update member set tel=? where id=?";
+		}
+		try {
+			String url="jdbc:oracle:thin:@127.0.0.1:1521:xe";
+			String user="hr";
+			String password="hr";
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection conn= DriverManager.getConnection(url, user, password);
+			if (conn!=null) {
+				System.out.println("연결 ");
+			}else {
+				System.out.println("연결실패");
+			}
+			PreparedStatement pst= conn.prepareStatement(sql);
+			pst.setString(1, input);
+			pst.setString(2, updateID);
+			
+			int cnt=pst.executeUpdate();
+			if(cnt>0) {
+				System.out.println("ㅅㄱ");
+			}else {
+				System.out.println("ㅅㅍ");
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}
