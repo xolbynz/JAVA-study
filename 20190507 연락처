@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+
+public class Ex01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		telephoneBookACt phone= new telephoneBookACt();
+		Scanner scanner = new Scanner(System.in);
+		phone.startPrint();
+		 while(true) {
+			 phone.menuPrint();
+			 int oper=scanner.nextInt();
+			 if(oper==1) {
+				 phone.namePrint();
+					String name = scanner.next();
+					phone.agePrint();
+					int age = scanner.nextInt();
+					phone.numPrint();
+					String num = scanner.next();
+
+					phone.insertList(new telephoneBookVO(name, age, num));
+				 
+			 }else if (oper==2) {
+				 phone.view();
+					phone.delPrint();
+					int index = scanner.nextInt();
+
+					phone.deleteList(index - 1);
+			 }else if (oper==3) {
+				 phone.searchPrint();
+					String name2 = scanner.next();
+					
+					phone.searchName(name2);
+				
+			 }else if (oper==4) {
+				
+				 phone.view();
+			 }
+	
+		 }
+	}
+
+}
