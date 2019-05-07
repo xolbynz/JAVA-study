@@ -1,0 +1,35 @@
+package ex0507;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ex01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//DB동적 로딩 --> 회사찾기
+		try {
+			String url="jdbc:oracle:thin:@127.0.0.1:1521:xe";//사용할 주소를 입력하는 곳 
+			String user="hr";
+			String pw="hr";
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			
+			//연결
+			
+		Connection conn = DriverManager.getConnection(url,user,pw);
+		
+		if (conn!= null) {
+			System.out.println("연결성공");
+			
+		}else {
+			System.out.println("연결 실패");
+		}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
